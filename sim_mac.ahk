@@ -1,0 +1,92 @@
+;macOS-style shortcuts in Windows
+;Ref: https://gist.github.com/ascendbruce/677c3169259c975259045f905cd889d6
+
+$!x::Send ^x
+$!c::Send ^c
+$!v::Send ^v
+$!s::Send ^s
+$!a::Send ^a
+$!z::Send ^z
+$!+z::Send ^y
+$!w::Send ^w
+$!f::Send ^f
+$!n::Send ^n
+$!q::Send !{f4}
+$!r::Send ^{f5}
+$!m::Send {LWin Down}{Down}{LWin Up}
+
+; Quick Switch Tab shotcuts
+
+$!1::Send ^1
+$!2::Send ^2
+$!3::Send ^3
+$!4::Send ^4
+$!5::Send ^5
+$!6::Send ^6
+$!7::Send ^7
+$!8::Send ^8
+$!9::Send ^9
+$!0::Send ^0
+
+; Chrome shotcuts
+
+$!t::Send ^t
+$!+t::Send ^+t
+$!+]::Send {Ctrl Down}{Tab Down}{Tab Up}{Ctrl Up}
+$!+[::Send {Ctrl Down}{Shift Down}{Tab Down}{Tab Up}{Shift Up}{Ctrl Up}
+$!l::Send ^l
+
+; input methods
+
+; $+,::Send ^,
+; $+.::Send ^.
+
+; navigation, selection, delete a word/till end
+
+$!Left::Send {Home}
+$!Right::Send {End}
+$!Up::Send {Lctrl down}{Home}{Lctrl up}
+$!Down::Send {Lctrl down}{End}{Lctrl up}
+
+$#Left::Send {ctrl down}{Left}{ctrl up}
+$#Right::Send {ctrl down}{Right}{ctrl up}
+$#+Left::Send {ctrl down}{shift down}{Left}{shift up}{ctrl up}
+$#+Right::Send {ctrl down}{shift down}{Right}{shift up}{ctrl up}
+
+$!+Left::Send {shift down}{Home}{shift up}
+$!+Right::Send {shift down}{End}{shift up}
+$!+Up::Send {Ctrl Down}{shift down}{Home}{shift up}{Ctrl Up}
+$!+Down::Send {Ctrl Down}{shift down}{End}{shift up}{Ctrl Up}
+
+!BS::Send {LShift down}{Home}{LShift Up}{Del}
+#BS::Send {LCtrl down}{BS}{LCtrl up}
+
+$#Space::Send {Ctrl Down}{LWin Down}{Space}{LWin Up}{Ctrl Up}
+$!Space::Send #{Space}
+$!LButton::Send ^{Click}
+
+;Alt + ` to switch windows in the same app 
+;Reference link: https://superuser.com/a/1721255
+
+!`::
+WinGetClass, OldClass, A
+WinGet, ActiveProcessName, ProcessName, A
+WinGet, WinClassCount, Count, ahk_exe %ActiveProcessName%
+IF WinClassCount = 1
+    Return
+loop, 2 {
+  WinSet, Bottom,, A
+  WinActivate, ahk_exe %ActiveProcessName%
+  WinGetClass, NewClass, A
+  if (OldClass <> "CabinetWClass" or NewClass = "CabinetWClass")
+    break
+}
+
+;My personal hotkey
+CapsLock:: Send {Esc}
+CapsLock & h::Send {left}
+CapsLock & j::Send {Down}
+CapsLock & k::Send {Up}
+CapsLock & l::Send {Right}
+
+
